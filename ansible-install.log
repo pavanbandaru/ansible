@@ -1,0 +1,145 @@
+login as: osboxes
+osboxes@192.168.1.198's password:
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Wed Jan 20 03:40:32 2021 from 192.168.1.5
+[osboxes@master ~]$ sudo su -
+[sudo] password for osboxes:
+[root@master ~]# yum install ansible
+Last metadata expiration check: 0:38:18 ago on Wed 20 Jan 2021 07:04:20 PM EST.
+No match for argument: ansible
+Error: Unable to find a match: ansible
+[root@master ~]# yum install *ansible*
+Last metadata expiration check: 0:38:52 ago on Wed 20 Jan 2021 07:04:20 PM EST.
+Dependencies resolved.
+=============================================================================================================================================================
+ Package                                               Architecture                 Version                            Repository                       Size
+=============================================================================================================================================================
+Installing:
+ ansible-freeipa                                       noarch                       0.1.12-6.el8                       AppStream                       239 k
+ centos-release-ansible-29                             noarch                       1-2.el8                            extras                          8.4 k
+Installing dependencies:
+ centos-release-configmanagement                       noarch                       1-1.el8                            extras                          8.7 k
+
+Transaction Summary
+=============================================================================================================================================================
+Install  3 Packages
+
+Total download size: 256 k
+Installed size: 1.3 M
+Is this ok [y/N]: y
+Downloading Packages:
+(1/3): ansible-freeipa-0.1.12-6.el8.noarch.rpm                                                                               311 kB/s | 239 kB     00:00
+(2/3): centos-release-configmanagement-1-1.el8.noarch.rpm                                                                    7.8 kB/s | 8.7 kB     00:01
+(3/3): centos-release-ansible-29-1-2.el8.noarch.rpm                                                                          7.3 kB/s | 8.4 kB     00:01
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                        167 kB/s | 256 kB     00:01
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                     1/1
+  Installing       : centos-release-configmanagement-1-1.el8.noarch                                                                                      1/3
+  Installing       : centos-release-ansible-29-1-2.el8.noarch                                                                                            2/3
+  Installing       : ansible-freeipa-0.1.12-6.el8.noarch                                                                                                 3/3
+  Verifying        : ansible-freeipa-0.1.12-6.el8.noarch                                                                                                 1/3
+  Verifying        : centos-release-ansible-29-1-2.el8.noarch                                                                                            2/3
+  Verifying        : centos-release-configmanagement-1-1.el8.noarch                                                                                      3/3
+Installed products updated.
+
+Installed:
+  ansible-freeipa-0.1.12-6.el8.noarch           centos-release-ansible-29-1-2.el8.noarch           centos-release-configmanagement-1-1.el8.noarch
+
+Complete!
+[root@master ~]# ansible
+bash: ansible: command not found...
+Install package 'ansible' to provide command 'ansible'? [N/y] y
+
+
+ * Waiting in queue...
+ * Loading list of packages....
+The following packages have to be installed:
+ ansible-2.9.16-1.el8.noarch    SSH-based configuration management, deployment, and task execution system
+ python3-babel-2.5.1-5.el8.noarch       Library for internationalizing Python applications
+ python3-jinja2-2.10.1-2.el8_0.noarch   General purpose template engine for python3
+ python3-jmespath-0.9.0-11.el8.noarch   JSON Matching Expressions
+ python3-markupsafe-0.23-19.el8.x86_64  Implements a XML/HTML/XHTML Markup safe string for Python 3
+ sshpass-1.06-8.el8.x86_64      Non-interactive SSH authentication utility
+Proceed with changes? [N/y] y
+
+
+ * Waiting in queue...
+ * Waiting for authentication...
+ * Waiting in queue...
+ * Downloading packages...
+ * Requesting data...
+ * Testing changes...
+ * Installing packages...
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD]
+               [--become-user BECOME_USER] [-K] [-i INVENTORY] [--list-hosts]
+               [-l SUBSET] [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [-k]
+               [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER]
+               [-c CONNECTION] [-T TIMEOUT]
+               [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS]
+               [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-C] [--syntax-check] [-D]
+               [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-pass | --vault-password-file VAULT_PASSWORD_FILES]
+               [-f FORKS] [-M MODULE_PATH] [--playbook-dir BASEDIR]
+               [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+ansible: error: the following arguments are required: pattern
+
+[root@master ~]# ansible -v
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD]
+               [--become-user BECOME_USER] [-K] [-i INVENTORY] [--list-hosts]
+               [-l SUBSET] [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [-k]
+               [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER]
+               [-c CONNECTION] [-T TIMEOUT]
+               [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS]
+               [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-C] [--syntax-check] [-D]
+               [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-pass | --vault-password-file VAULT_PASSWORD_FILES]
+               [-f FORKS] [-M MODULE_PATH] [--playbook-dir BASEDIR]
+               [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+ansible: error: the following arguments are required: pattern
+[root@master ~]# ansible --version
+ansible 2.9.16
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3.6/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 3.6.8 (default, Apr 16 2020, 01:36:27) [GCC 8.3.1 20191121 (Red Hat 8.3.1-5)]
+[root@master ~]# pwd
+/root
+[root@master ~]# ls -rlt
+total 8
+-rw-------. 1 root root 1616 Jul  4  2020 anaconda-ks.cfg
+-rw-r--r--. 1 root root 1726 Jul  4  2020 initial-setup-ks.cfg
+drwxr-xr-x. 2 root root    6 Jan 20 05:10 Downloads
+drwxr-xr-x. 2 root root    6 Jan 20 05:10 Desktop
+drwxr-xr-x. 2 root root    6 Jan 20 05:10 Videos
+drwxr-xr-x. 2 root root    6 Jan 20 05:10 Templates
+drwxr-xr-x. 2 root root    6 Jan 20 05:10 Public
+drwxr-xr-x. 2 root root    6 Jan 20 05:10 Pictures
+drwxr-xr-x. 2 root root    6 Jan 20 05:10 Music
+drwxr-xr-x. 2 root root    6 Jan 20 05:10 Documents
+[root@master ~]# exit
+logout
+[osboxes@master ~]$ ls -rlt
+total 0
+drwxr-xr-x. 2 osboxes osboxes 6 Jul  4  2020 Videos
+drwxr-xr-x. 2 osboxes osboxes 6 Jul  4  2020 Templates
+drwxr-xr-x. 2 osboxes osboxes 6 Jul  4  2020 Public
+drwxr-xr-x. 2 osboxes osboxes 6 Jul  4  2020 Pictures
+drwxr-xr-x. 2 osboxes osboxes 6 Jul  4  2020 Music
+drwxr-xr-x. 2 osboxes osboxes 6 Jul  4  2020 Downloads
+drwxr-xr-x. 2 osboxes osboxes 6 Jul  4  2020 Documents
+drwxr-xr-x. 2 osboxes osboxes 6 Jul  4  2020 Desktop
+[osboxes@master ~]$ pwd
+/home/osboxes
